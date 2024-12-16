@@ -4,7 +4,7 @@ import Loading from './Loading';
 
 const Expense = () => {
 
-    const [expense, setExpense] = useState([])
+    const [expense, setExpense] = useState ([])
 
     useEffect(() => {
         const fetchData = async () => {

@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Loading from './Loading';
 
 const Summary = () => {
 
@@ -9,7 +8,8 @@ const Summary = () => {
     const [summaryData, setSummaryData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    console.log(summaryData)
+    const summary = summaryData?.data
+    console.log(summary)
 
     const handleCurrencyChange = async (e) => {
         setBaseCurrency(e.target.value)
@@ -22,11 +22,11 @@ const Summary = () => {
             try {
                 const response = await axios.get(`https://moneyexchange-olive.vercel.app/api/money/summary?baseCurrency=${baseCurrency}`);
                 setSummaryData(response.data);
-                toast.success("Success")
+               
                 setLoading(false);
             } catch (err) {
                 setLoading(false);
-                toast.error('Error fetching summary data');
+               
             }
         };
 
@@ -34,7 +34,7 @@ const Summary = () => {
     }, [baseCurrency]);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div className='p-4'> <Loading/> </div>;
     }
 
     if (error) {
@@ -61,7 +61,13 @@ const Summary = () => {
                             <option value="EUR">EUR</option>
                         </select>
                     </div>
-                    <ToastContainer />
+                </div>
+            </div>
+            <div>
+                <div className='p-4'>
+                    <h1>Base Currency : {summary?.baseCurrency}</h1>
+                    <h1>Total : {summary?.total}</h1>
+
                 </div>
             </div>
         </div>

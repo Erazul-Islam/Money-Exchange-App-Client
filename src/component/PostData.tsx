@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 import Swal from 'sweetalert2';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PostData = () => {
 
@@ -25,11 +27,7 @@ const PostData = () => {
         try {
             const response = await axios.post('https://moneyexchange-olive.vercel.app/api/money/expenses', formData);
             console.log('Data submitted successfully:', response.data);
-            Swal.fire({
-                title: "Good job!",
-                text: "You successfully added expense!",
-                icon: "success"
-            })
+            toast.success("Successfully Posted")
             setFormData({ name: '', description: '', amount: '', currency: 'USD' });
         } catch (error) {
             console.error('Error submitting data:', error);
@@ -44,7 +42,6 @@ const PostData = () => {
 
     return (
         <div>
-
             <div className=" flex justify-center items-center ">
                 <div className="w-full max-w-md p-6 rounded-lg shadow-lg">
                     <h1 className="text-2xl font-semibold text-center text-gray-700 mb-6">Add New Expense</h1>
@@ -115,6 +112,7 @@ const PostData = () => {
                     </form>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 };

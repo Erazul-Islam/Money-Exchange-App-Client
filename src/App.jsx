@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <div className="flex justify-around">
+      <div className="md:flex justify-around">
         <Expense />
         <PostData />
         <Summary />

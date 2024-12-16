@@ -67,7 +67,7 @@ const Summary = () => {
                 <div className='p-4'>
                     <h1>Base Currency : {summary?.baseCurrency}</h1>
                     <h1>Total : {summary?.total}</h1>
-
+                        
                 </div>
             </div>
         </div>
